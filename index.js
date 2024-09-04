@@ -1,20 +1,30 @@
 // Ініціалізація змінних
+/** @type {number} */
 let minNumber = 1; // Мінімальне число для вгадування
 
+/** @type {number} */
 let maxNumber = 100; // Максимальне число для вгадування
 
 // Генерація випадкового числа, яке потрібно вгадати
+/** @type {number} */
 let randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
 
+/** @type {number} */
 let attempts = 0; // Лічильник спроб
 
+/** @type {number} */
 let maxAttempts = 10; // Максимальна кількість спроб
 
+/** @type {boolean} */
 let gameOver = false; // Стан гри: завершена чи ні
 
 // Функція для отримання введення користувача
+/**
+ * @returns {number} 
+ */
 function getUserGuess() {
     // Запитуємо у користувача число
+    /** @type {string} */
     let userInput = prompt(`Введіть число від ${minNumber} до ${maxNumber}:`);
     
     // Перетворюємо введене значення на ціле число
@@ -22,6 +32,9 @@ function getUserGuess() {
 }
 
 // Функція для перевірки числа, введеного користувачем
+/**
+ * @param {number} userGuess 
+ */
 function checkGuess(userGuess) {
     // Збільшуємо лічильник спроб
     attempts++;
@@ -132,18 +145,30 @@ function startGame() {
 }
 
 // Допоміжна функція для форматування рядків
+/**
+ * @param {string} str 
+ * @returns {string}
+ */
 function formatString(str) {
     // Видалення пробілів на початку і в кінці рядка
     return str.trim();
 }
 
 // Функція для перевірки, чи є число парним
+/**
+ * @param {number} num 
+ * @returns {boolean}
+ */
 function isEvenNumber(num) {
     // Перевірка на парність
     return num % 2 === 0;
 }
 
 // Функція для перевірки, чи є число простим
+/**
+ * @param {number} num 
+ * @returns {boolean}
+ */
 function isPrimeNumber(num) {
     // Перевірка на простоту
     if (num <= 1) return false;
@@ -155,17 +180,31 @@ function isPrimeNumber(num) {
 }
 
 // Функція для генерації випадкового числа в заданому діапазоні
+/**
+ * @param {number} min 
+ * @param {number} max 
+ * @returns {number}
+ */
 function generateRandomNumber(min, max) {
     // Генерація випадкового числа
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // Функція для відображення повідомлення про спробу
+/**
+ * @param {number} attempts 
+ * @param {number} maxAttempts 
+ */
 function displayAttemptMessage(attempts, maxAttempts) {
     console.log(`Це ваша спроба номер ${attempts} з ${maxAttempts}`);
 }
 
 // Функція для визначення, чи досягнуто межі спроб
+/**
+ * @param {number} attempts 
+ * @param {number} maxAttempts 
+ * @returns {boolean}
+ */
 function hasExceededAttempts(attempts, maxAttempts) {
     // Перевірка, чи перевищено кількість спроб
     return attempts >= maxAttempts;
