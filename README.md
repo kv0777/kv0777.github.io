@@ -1,1 +1,1 @@
-# practiceone
+This repository is committed for first practical work :)
