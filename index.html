@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інтерактивна сторінка</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header id="header">
+        <h1>Інтерактивна сторінка з TypeScript</h1>
+    </header>
+
+    <main>
+        <section>
+            <button id="fetchPostsBtn">Отримати пости</button>
+            <ul id="postList"></ul>
+        </section>
+
+        <section class="animate-on-scroll">
+            <h2>Анімований розділ</h2>
+            <p>Цей розділ з'являється з анімацією під час скролу.</p>
+        </section>
+    </main>
+
+    <!-- Модальне вікно -->
+    <div id="modal" class="modal">
+        <div class="modal-content" id="modalContent">
+            <span id="closeModal" class="close">&times;</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
