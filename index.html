@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Schedule Management</title>
+</head>
+
+<body>
+    <h1>University Schedule Management</h1>
+
+    <section>
+        <h2>Add Professor</h2>
+        <form id="addProfessorForm">
+            <label for="professorName">Name:</label>
+            <input type="text" id="professorName" required>
+            <label for="professorDept">Department:</label>
+            <input type="text" id="professorDept" required>
+            <button type="submit">Add Professor</button>
+        </form>
+    </section>
+
+    <script src="schedule.js"></script>
+    <script>
+        // JavaScript for form interaction
+
+        document.getElementById('addProfessorForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById('professorName').value;
+            const department = document.getElementById('professorDept').value;
+
+            const newProfessor = {
+                id: professors.length + 1,
+                name: name,
+                department: department
+            };
+
+            addProfessor(newProfessor);
+            alert('Professor added successfully!');
+        });
+    </script>
+</body>
+
+</html>
