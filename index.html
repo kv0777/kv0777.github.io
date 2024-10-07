@@ -1,46 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Schedule Management</title>
+    <title>Система управління розкладом університету</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <h1>University Schedule Management</h1>
+    <h1>Система управління розкладом університету</h1>
 
-    <section>
-        <h2>Add Professor</h2>
-        <form id="addProfessorForm">
-            <label for="professorName">Name:</label>
-            <input type="text" id="professorName" required>
-            <label for="professorDept">Department:</label>
-            <input type="text" id="professorDept" required>
-            <button type="submit">Add Professor</button>
-        </form>
-    </section>
+    <div id="app">
+        <h2>Додати професора</h2>
+        <input type="text" id="professorName" placeholder="Ім'я професора" />
+        <input type="text" id="professorDepartment" placeholder="Відділ" />
+        <button id="addProfessorBtn">Додати професора</button>
 
-    <script src="schedule.js"></script>
-    <script>
-        // JavaScript for form interaction
+        <h2>Додати заняття</h2>
+        <input type="number" id="courseId" placeholder="ID курсу" />
+        <input type="number" id="professorId" placeholder="ID професора" />
+        <input type="text" id="classroomNumber" placeholder="Номер аудиторії" />
+        <select id="dayOfWeek">
+            <option value="Monday">Понеділок</option>
+            <option value="Tuesday">Вівторок</option>
+            <option value="Wednesday">Середа</option>
+            <option value="Thursday">Четвер</option>
+            <option value="Friday">П'ятниця</option>
+        </select>
+        <select id="timeSlot">
+            <option value="8:30-10:00">8:30-10:00</option>
+            <option value="10:15-11:45">10:15-11:45</option>
+            <option value="12:15-13:45">12:15-13:45</option>
+            <option value="14:00-15:30">14:00-15:30</option>
+            <option value="15:45-17:15">15:45-17:15</option>
+        </select>
+        <button id="addLessonBtn">Додати заняття</button>
 
-        document.getElementById('addProfessorForm').addEventListener('submit', function (event) {
-            event.preventDefault();
+        <h2>Знайти вільні аудиторії</h2>
+        <input type="text" id="searchTimeSlot" placeholder="Часовий слот" />
+        <select id="searchDayOfWeek">
+            <option value="Monday">Понеділок</option>
+            <option value="Tuesday">Вівторок</option>
+            <option value="Wednesday">Середа</option>
+            <option value="Thursday">Четвер</option>
+            <option value="Friday">П'ятниця</option>
+        </select>
+        <button id="findAvailableClassroomsBtn">Знайти вільні аудиторії</button>
+        <div id="availableClassrooms"></div>
 
-            const name = document.getElementById('professorName').value;
-            const department = document.getElementById('professorDept').value;
+        <h2>Розклад професора</h2>
+        <input type="number" id="professorScheduleId" placeholder="ID професора" />
+        <button id="getProfessorScheduleBtn">Отримати розклад</button>
+        <div id="professorSchedule"></div>
+    </div>
 
-            const newProfessor = {
-                id: professors.length + 1,
-                name: name,
-                department: department
-            };
-
-            addProfessor(newProfessor);
-            alert('Professor added successfully!');
-        });
-    </script>
+    <script src="script.js" type="text/javascript"></script>
 </body>
 
 </html>
