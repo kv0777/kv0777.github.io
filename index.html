@@ -1,61 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Система управління розкладом університету</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<body>
+  <body>
     <h1>Система управління розкладом університету</h1>
 
     <div id="app">
-        <h2>Додати професора</h2>
-        <input type="text" id="professorName" placeholder="Ім'я професора" />
-        <input type="text" id="professorDepartment" placeholder="Відділ" />
-        <button id="addProfessorBtn">Додати професора</button>
+      <h2>Додати професора</h2>
+      <input type="text" id="professorName" placeholder="Ім'я професора" />
+      <input type="text" id="professorDepartment" placeholder="Відділ" />
+      <button id="addProfessorBtn">Додати професора</button>
 
-        <h2>Додати заняття</h2>
-        <input type="number" id="courseId" placeholder="ID курсу" />
-        <input type="number" id="professorId" placeholder="ID професора" />
-        <input type="text" id="classroomNumber" placeholder="Номер аудиторії" />
-        <select id="dayOfWeek">
-            <option value="Monday">Понеділок</option>
-            <option value="Tuesday">Вівторок</option>
-            <option value="Wednesday">Середа</option>
-            <option value="Thursday">Четвер</option>
-            <option value="Friday">П'ятниця</option>
-        </select>
-        <select id="timeSlot">
-            <option value="8:30-10:00">8:30-10:00</option>
-            <option value="10:15-11:45">10:15-11:45</option>
-            <option value="12:15-13:45">12:15-13:45</option>
-            <option value="14:00-15:30">14:00-15:30</option>
-            <option value="15:45-17:15">15:45-17:15</option>
-        </select>
-        <button id="addLessonBtn">Додати заняття</button>
+      <h2>Додати заняття</h2>
+      <input type="number" id="courseId" placeholder="ID курсу" />
+      <input type="number" id="professorId" placeholder="ID професора" />
+      <input type="text" id="classroomNumber" placeholder="Номер аудиторії" />
+      <select id="dayOfWeek">
+        <option value="Monday">Понеділок</option>
+        <option value="Tuesday">Вівторок</option>
+        <option value="Wednesday">Середа</option>
+        <option value="Thursday">Четвер</option>
+        <option value="Friday">П'ятниця</option>
+      </select>
+      <select id="timeSlot">
+        <option value="8:30-10:00">8:30-10:00</option>
+        <option value="10:15-11:45">10:15-11:45</option>
+        <option value="12:15-13:45">12:15-13:45</option>
+        <option value="14:00-15:30">14:00-15:30</option>
+        <option value="15:45-17:15">15:45-17:15</option>
+      </select>
+      <button id="addLessonBtn">Додати заняття</button>
 
-        <h2>Знайти вільні аудиторії</h2>
-        <input type="text" id="searchTimeSlot" placeholder="Часовий слот" />
-        <select id="searchDayOfWeek">
-            <option value="Monday">Понеділок</option>
-            <option value="Tuesday">Вівторок</option>
-            <option value="Wednesday">Середа</option>
-            <option value="Thursday">Четвер</option>
-            <option value="Friday">П'ятниця</option>
-        </select>
-        <button id="findAvailableClassroomsBtn">Знайти вільні аудиторії</button>
-        <div id="availableClassrooms"></div>
+      <h2>Знайти вільні аудиторії</h2>
+      <input type="text" id="searchTimeSlot" placeholder="Часовий слот" />
+      <select id="searchDayOfWeek">
+        <option value="Monday">Понеділок</option>
+        <option value="Tuesday">Вівторок</option>
+        <option value="Wednesday">Середа</option>
+        <option value="Thursday">Четвер</option>
+        <option value="Friday">П'ятниця</option>
+      </select>
+      <button id="findAvailableClassroomsBtn">Знайти вільні аудиторії</button>
+      <div id="availableClassrooms"></div>
 
-        <h2>Розклад професора</h2>
-        <input type="number" id="professorScheduleId" placeholder="ID професора" />
-        <button id="getProfessorScheduleBtn">Отримати розклад</button>
-        <div id="professorSchedule"></div>
+      <h2>Розклад професора</h2>
+      <input
+        type="number"
+        id="professorScheduleId"
+        placeholder="ID професора"
+      />
+      <button id="getProfessorScheduleBtn">Отримати розклад</button>
+      <div id="professorSchedule"></div>
     </div>
 
     <script src="script.js" type="text/javascript"></script>
-</body>
-
+  </body>
 </html>
