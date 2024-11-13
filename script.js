@@ -1,79 +1,61 @@
 "use strict";
-// Data arrays
-const professors = [];
-const classrooms = [];
-const courses = [];
-const schedule = [];
-// Functions
-function addProfessor(professor) {
-    professors.push(professor);
-}
-function addLesson(lesson) {
-    const conflict = validateLesson(lesson);
-    if (conflict) {
-        console.error("Conflict found:", conflict);
-        return false;
+// Крок 1: Створення типів товарів
+// Крок 2: Створення функцій для пошуку товарів
+/**
+ * Знаходить товар за id.
+ * @param products - Масив товарів типу T
+ * @param id - Ідентифікатор товару
+ * @returns Товар або undefined, якщо товар не знайдено
+ */
+const findProduct = (products, id) => {
+    return products.find(product => product.id === id);
+};
+/**
+ * Фільтрує товари за ціною.
+ * @param products - Масив товарів типу T
+ * @param maxPrice - Максимальна ціна
+ * @returns Масив товарів, ціна яких не перевищує maxPrice
+ */
+const filterByPrice = (products, maxPrice) => {
+    return products.filter(product => product.price <= maxPrice);
+};
+/**
+ * Додає товар у кошик.
+ * @param cart - Масив елементів кошика типу CartItem<T>
+ * @param product - Товар типу T
+ * @param quantity - Кількість товару
+ * @returns Оновлений масив елементів кошика
+ */
+const addToCart = (cart, product, quantity) => {
+    return [...cart, { product, quantity }];
+};
+/**
+ * Обчислює загальну вартість товарів у кошику.
+ * @param cart - Масив елементів кошика типу CartItem<T>
+ * @returns Загальна вартість товарів
+ */
+const calculateTotal = (cart) => {
+    return cart.reduce((total, item) => total + item.product.price * item.quantity, 0);
+};
+// Крок 4: Використання функцій
+// Створення тестових даних
+const electronics = [
+    { id: 1, name: "Телефон", price: 10000, category: 'electronics', warranty: '2 роки' }
+];
+const clothing = [
+    { id: 2, name: "Футболка", price: 500, category: 'clothing', size: 'L' }
+];
+// Тестування функцій
+const testFunctions = () => {
+    const phone = findProduct(electronics, 1);
+    if (phone) {
+        let cart = addToCart([], phone, 1);
+        console.log("Кошик після додавання товару:", cart);
+        const total = calculateTotal(cart);
+        console.log("Загальна вартість:", total);
+        const affordableItems = filterByPrice(electronics, 15000);
+        console.log("Товари в межах бюджету:", affordableItems);
     }
-    schedule.push(lesson);
-    return true;
-}
-function findAvailableClassrooms(timeSlot, dayOfWeek) {
-    const occupiedClassrooms = schedule
-        .filter(lesson => lesson.timeSlot === timeSlot && lesson.dayOfWeek === dayOfWeek)
-        .map(lesson => lesson.classroomNumber);
-    return classrooms
-        .filter(classroom => !occupiedClassrooms.includes(classroom.number))
-        .map(classroom => classroom.number);
-}
-function getProfessorSchedule(professorId) {
-    return schedule.filter(lesson => lesson.professorId === professorId);
-}
-function validateLesson(lesson) {
-    const professorConflict = schedule.find(l => l.professorId === lesson.professorId && l.dayOfWeek === lesson.dayOfWeek && l.timeSlot === lesson.timeSlot);
-    if (professorConflict) {
-        return { type: "ProfessorConflict", lessonDetails: professorConflict };
-    }
-    const classroomConflict = schedule.find(l => l.classroomNumber === lesson.classroomNumber && l.dayOfWeek === lesson.dayOfWeek && l.timeSlot === lesson.timeSlot);
-    if (classroomConflict) {
-        return { type: "ClassroomConflict", lessonDetails: classroomConflict };
-    }
-    return null;
-}
-function getClassroomUtilization(classroomNumber) {
-    const totalLessons = schedule.filter(lesson => lesson.classroomNumber === classroomNumber).length;
-    return (totalLessons / 5) * 100; // Assume 5 time slots per day
-}
-function getMostPopularCourseType() {
-    const courseCount = courses.reduce((acc, course) => {
-        acc[course.type] = (acc[course.type] || 0) + 1;
-        return acc;
-    }, {});
-    return Object.entries(courseCount).reduce((prev, curr) => curr[1] > prev[1] ? curr : prev)[0];
-}
-function reassignClassroom(lessonId, newClassroomNumber) {
-    const lesson = schedule.find(l => l.courseId === lessonId);
-    if (!lesson)
-        return false;
-    const newLesson = Object.assign(Object.assign({}, lesson), { classroomNumber: newClassroomNumber });
-    const conflict = validateLesson(newLesson);
-    if (conflict) {
-        console.error("Conflict when reassigning:", conflict);
-        return false;
-    }
-    lesson.classroomNumber = newClassroomNumber;
-    return true;
-}
-function cancelLesson(lessonId) {
-    const lessonIndex = schedule.findIndex(l => l.courseId === lessonId);
-    if (lessonIndex !== -1) {
-        schedule.splice(lessonIndex, 1);
-    }
-}
-// Example data for testing
-addProfessor({ id: 1, name: "Іваненко Іван", department: "Фізика" });
-classrooms.push({ number: "101", capacity: 30, hasProjector: true });
-classrooms.push({ number: "102", capacity: 25, hasProjector: false });
-courses.push({ id: 1, name: "Фізика", type: "Lecture" });
-addLesson({ courseId: 1, professorId: 1, classroomNumber: "101", dayOfWeek: "Monday", timeSlot: "10:15-11:45" });
-console.log(findAvailableClassrooms("10:15-11:45", "Monday")); // Check available classrooms
-console.log(getProfessorSchedule(1)); // Get professor's schedule
+};
+// Запуск тестування по кліку
+document.getElementById("testButton")?.addEventListener("click", testFunctions);
